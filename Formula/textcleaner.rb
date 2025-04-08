@@ -25,8 +25,8 @@ class Textcleaner < Formula
   end
   
   resource "pypdf" do
-    url "https://files.pythonhosted.org/packages/4a/25/ede704969534e0fddbe872b2abbde8669455704a946d84800a1e247bdb31/pypdf-3.17.4.tar.gz"
-    sha256 "dcef844a85495ddf0d0936385910d60e7c91515fd6572bc3bc58cad4036c62e2"
+    url "https://pypi.io/packages/source/p/pypdf/pypdf-3.17.4.tar.gz"
+    sha256 "8c931e8def738d5ff8cbad4e47adcddd518759e4ff4a581480769305871b46ee"
   end
 
   def install
