@@ -22,8 +22,8 @@ class Textcleaner < Formula
   end
 
   resource "pypdf" do
-    url "https://files.pythonhosted.org/packages/23/38/5e123ad1b071f6aa068d6c39ddc2993ce9355bb8403b40d7feb564b9abb8/pypdf-3.17.4.tar.gz"
-    sha256 "ddb115c11b998d1b59e5998255b18c0d1f3822f5c35b51eaa880e3a31c91fd9d"
+    url "https://files.pythonhosted.org/packages/c4/52/47d7eea4fdc7c9bcde0c98174af3c4f110c593c89d93c8a5c22fa5e93ffc/pypdf-3.17.4-py3-none-any.whl"
+    sha256 "0d4d0a5471be145a03f5af4b0a69e147c92f215a8cc08e7d5fcec6f5eee29c3a"
   end
 
   resource "pyyaml" do
@@ -32,7 +32,17 @@ class Textcleaner < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    virtualenv_create(libexec, "python3.9")
+    
+    # Install the Python packages
+    resources.each do |r|
+      r.stage do
+        system libexec/"bin/pip", "install", "-v", "--no-deps", "--no-index", "--find-links", ".", r.name
+      end
+    end
+    
+    # Install the main package
+    system libexec/"bin/pip", "install", "--no-deps", "."
     
     # Create a wrapper script for the CLI
     (bin/"textcleaner").write <<~EOS
