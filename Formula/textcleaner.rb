@@ -8,18 +8,20 @@ class Textcleaner < Formula
   depends_on "python@3.9"
 
   def install
-    # Install the package directly using pip
-    system Formula["python@3.9"].opt_bin/"pip3", "install", "--prefix=#{prefix}", 
-           "--no-deps", "."
-
-    # Install dependencies directly
-    system Formula["python@3.9"].opt_bin/"pip3", "install", "--prefix=#{prefix}",
+    # Install Python dependencies first
+    system Formula["python@3.9"].opt_bin/"pip3", "install", 
            "beautifulsoup4", "click", "pypdf", "pyyaml"
+
+    # Create bin directory
+    bin.mkpath
     
-    # Create a simple wrapper script
+    # Copy source files to libexec
+    libexec.install Dir["*"]
+    
+    # Create a simple wrapper script in bin
     (bin/"textcleaner").write <<~EOS
       #!/bin/bash
-      exec "#{Formula["python@3.9"].opt_bin}/python3" -m llm_text_processor.cli "$@"
+      PYTHONPATH="#{libexec}:$PYTHONPATH" exec "#{Formula["python@3.9"].opt_bin}/python3" -m llm_text_processor.cli "$@"
     EOS
     chmod 0755, bin/"textcleaner"
   end
