@@ -4,7 +4,7 @@ class Textcleaner < Formula
   desc "Text cleaning tool for LLM processing"
   homepage "https://github.com/emil7051/llm-text-processor"
   url "https://github.com/emil7051/llm-text-processor/archive/refs/tags/v0.1.0.zip"
-  sha256 "a76ab4dde33ae9b40e00c8fff54a5b29d2e0ec58af1288d86bdbeef8ad53e8ba"
+  sha256 "dfba9dec8109f169251d0e6fe51b47e05f2a8cf20a79af5baeb0c6fd00b63214"
   license "MIT"
 
   depends_on "python@3.9"
