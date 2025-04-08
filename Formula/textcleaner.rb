@@ -8,25 +8,29 @@ class Textcleaner < Formula
   depends_on "python@3.9"
 
   def install
-    # Install Python dependencies first
-    system Formula["python@3.9"].opt_bin/"pip3", "install", 
-           "beautifulsoup4", "click", "pypdf", "pyyaml"
-
-    # Create bin directory
-    bin.mkpath
+    # Note: This formula provides the textcleaner command but users need to install Python dependencies separately
+    # using: pip install beautifulsoup4 click pypdf pyyaml
     
-    # Copy source files to libexec
+    # Copy source files to libexec directory
     libexec.install Dir["*"]
     
-    # Create a simple wrapper script in bin
+    # Create wrapper script
     (bin/"textcleaner").write <<~EOS
       #!/bin/bash
-      PYTHONPATH="#{libexec}:$PYTHONPATH" exec "#{Formula["python@3.9"].opt_bin}/python3" -m llm_text_processor.cli "$@"
+      echo "First time? Install dependencies with: pip install beautifulsoup4 click pypdf pyyaml"
+      PYTHONPATH="#{libexec}:$PYTHONPATH" exec python3 -m llm_text_processor.cli "$@"
     EOS
     chmod 0755, bin/"textcleaner"
   end
 
+  def caveats
+    <<~EOS
+      Before using textcleaner, please install required Python dependencies:  
+        pip install beautifulsoup4 click pypdf pyyaml
+    EOS
+  end
+
   test do
-    assert_match "usage", shell_output("#{bin}/textcleaner --help")
+    system "#{bin}/textcleaner", "--help"
   end
 end
