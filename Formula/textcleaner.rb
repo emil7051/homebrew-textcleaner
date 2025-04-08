@@ -11,38 +11,14 @@ class Textcleaner < Formula
   depends_on "tesseract" => :recommended
   depends_on "poppler" => :recommended
 
-  resource "beautifulsoup4" do
-    url "https://files.pythonhosted.org/packages/af/0b/44c39cf3b18a9280950ad63a579ce395dda4c32193ee9da7ff0aed547094/beautifulsoup4-4.12.2.tar.gz"
-    sha256 "492bbc69dca35d12daac71c4db1bfff0c876c00ef4a2ffacce226d4638eb72da"
-  end
-
-  resource "click" do
-    url "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz"
-    sha256 "ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"
-  end
-
-  resource "pypdf" do
-    url "https://files.pythonhosted.org/packages/c4/52/47d7eea4fdc7c9bcde0c98174af3c4f110c593c89d93c8a5c22fa5e93ffc/pypdf-3.17.4-py3-none-any.whl"
-    sha256 "0d4d0a5471be145a03f5af4b0a69e147c92f215a8cc08e7d5fcec6f5eee29c3a"
-  end
-
-  resource "pyyaml" do
-    url "https://files.pythonhosted.org/packages/cd/e5/af35f7ea75cf72f2cd079c95ee16797de7cd71f29ea7c68ae5ce7be1eda0/PyYAML-6.0.1.tar.gz"
-    sha256 "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43"
-  end
-
   def install
     virtualenv_create(libexec, "python3.9")
     
-    # Install the Python packages
-    resources.each do |r|
-      r.stage do
-        system libexec/"bin/pip", "install", "-v", "--no-deps", "--no-index", "--find-links", ".", r.name
-      end
-    end
+    # Install the package and its dependencies from PyPI
+    system libexec/"bin/pip", "install", "-v", "beautifulsoup4", "click", "pypdf", "pyyaml"
     
-    # Install the main package
-    system libexec/"bin/pip", "install", "--no-deps", "."
+    # Install the package from the downloaded zip
+    system libexec/"bin/pip", "install", "-v", "."
     
     # Create a wrapper script for the CLI
     (bin/"textcleaner").write <<~EOS
