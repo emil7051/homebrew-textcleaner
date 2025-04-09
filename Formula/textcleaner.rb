@@ -22,7 +22,7 @@ class Textcleaner < Formula
 
     # Create a wrapper script to make the command available in the PATH
     # Ensures the command runs within the virtual environment
-    (bin/"textcleaner").write_env_script venv.bin/"textcleaner", PATH: "#{venv.bin}:$PATH"
+    (bin/"textcleaner").write_env_script libexec/"bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
   end
 
   test do
