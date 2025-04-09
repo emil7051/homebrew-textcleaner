@@ -10,13 +10,13 @@ class Textcleaner < Formula
 
   # Define the minimum Python version required, matching pyproject.toml
   # Adjust python version if needed (e.g., python@3.9, python@3.10)
-  depends_on "python@3.8"
+  depends_on "python@3.9"
 
   # Dependencies are now handled by setup.py/pyproject.toml via pip
 
   def install
     # Create a virtual environment
-    venv = virtualenv_create(libexec, Formula["python@3.8"].opt_bin/"python3")
+    venv = virtualenv_create(libexec, Formula["python@3.9"].opt_bin/"python3.9")
     # Install the package and its dependencies using pip from the downloaded source
     venv.pip_install root
 
