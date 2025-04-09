@@ -5,7 +5,7 @@ class Textcleaner < Formula
   homepage "https://github.com/emil7051/textcleaner"
   url "https://github.com/emil7051/textcleaner/archive/refs/tags/v0.2.5.tar.gz"
   version "0.2.5"
-  sha256 "b0a56b423a112d3a0ce53ca248f5cf627a97c28bb05620a28356c364642fcc49"
+  sha256 "5122706f7e251dbb0a89b35332b14039802a7cbcd646ba5c1dd257da869e4d3d"
   license "MIT"
   head "https://github.com/emil7051/textcleaner.git", branch: "main"
 
