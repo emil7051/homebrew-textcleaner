@@ -15,7 +15,14 @@ class Textcleaner < Formula
   # Dependencies are now handled by setup.py/pyproject.toml via pip
 
   def install
-    virtualenv_install_with_resources
+    # Create a virtual environment
+    venv = virtualenv_create(libexec, Formula["python@3.9"].opt_bin/"python3.9")
+    # Install the package and its dependencies using pip from the downloaded source
+    venv.pip_install buildpath
+
+    # Create a wrapper script to make the command available in the PATH
+    # Ensures the command runs within the virtual environment
+    (bin/"textcleaner").write_env_script libexec/"bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
   end
 
   test do
