@@ -17,6 +17,9 @@ class Textcleaner < Formula
   def install
     # Create a virtual environment
     venv = virtualenv_create(libexec, Formula["python@3.9"].opt_bin/"python3.9")
+    # Ensure pip is installed and upgraded
+    system libexec/"bin/python3", "-m", "ensurepip", "--upgrade"
+    system libexec/"bin/pip", "install", "--upgrade", "pip"
     # Install the package and its dependencies using pip from the downloaded source
     venv.pip_install buildpath
 
