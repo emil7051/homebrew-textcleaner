@@ -3,9 +3,9 @@ class Textcleaner < Formula
 
   desc "Text cleaning tool for LLM processing"
   homepage "https://github.com/emil7051/textcleaner"
-  url "https://github.com/emil7051/textcleaner/archive/a9db754b167330996c225c2263d785d16a487831.tar.gz"
-  version "0.1.2"
-  sha256 "e9954c9f77663c13d70858dbed42d221b8c05a2344387a8f9d172ae03717ae8a" # Updated SHA
+  url "https://github.com/emil7051/textcleaner/archive/1a793ac3ca62d7bbeea96af1aba41a7b3e77ce04.tar.gz"
+  version "0.1.3"
+  sha256 "PLACEHOLDER_SHA" # Placeholder SHA - Homebrew will calculate this
   license "MIT"
   head "https://github.com/emil7051/textcleaner.git", branch: "main"
 
