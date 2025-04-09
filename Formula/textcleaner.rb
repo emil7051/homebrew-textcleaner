@@ -3,20 +3,21 @@ class Textcleaner < Formula
 
   desc "Text cleaning tool for LLM processing"
   homepage "https://github.com/emil7051/textcleaner"
-  url "https://github.com/emil7051/textcleaner/archive/refs/tags/v0.2.4.tar.gz"
-  sha256 "e984625da6e202bd6ead094bacde6cfe0b69c299dd67c53a428da7faa4bc619d"
+  url "https://github.com/emil7051/textcleaner/archive/a9db754b167330996c225c2263d785d16a487831.tar.gz"
+  version "0.1.2"
+  sha256 "a16a32035b66f53b55df9639824f0e6e8c6fa84b7373d1c7658d0b8d3a076178" # Placeholder SHA - Homebrew will calculate this
   license "MIT"
   head "https://github.com/emil7051/textcleaner.git", branch: "main"
 
   # Define the minimum Python version required, matching pyproject.toml
   # Adjust python version if needed (e.g., python@3.9, python@3.10)
-  depends_on "python@3.9"
+  depends_on "python@3.11"
 
   # Dependencies are now handled by setup.py/pyproject.toml via pip
 
   def install
     # Create a virtual environment
-    venv = virtualenv_create(libexec, Formula["python@3.9"].opt_bin/"python3.9", without_pip: false)
+    venv = virtualenv_create(libexec, Formula["python@3.11"].opt_bin/"python3.11", without_pip: false)
     # Install the package AND its dependencies using the virtualenv's pip
     system libexec/"bin/pip", "install", buildpath
 
