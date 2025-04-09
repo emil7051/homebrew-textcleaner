@@ -1,36 +1,32 @@
 class Textcleaner < Formula
-  desc "Text cleaning tool for LLM processing"
-  homepage "https://github.com/emil7051/llm-text-processor"
-  url "https://github.com/emil7051/llm-text-processor/archive/refs/tags/v0.1.0.zip"
-  sha256 "dfba9dec8109f169251d0e6fe51b47e05f2a8cf20a79af5baeb0c6fd00b63214"
-  license "MIT"
+  include Language::Python::Virtualenv
 
-  depends_on "python@3.9"
+  desc "Text cleaning tool for LLM processing"
+  homepage "https://github.com/emil7051/textcleaner"
+  url "https://github.com/emil7051/textcleaner/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "5c2683271cf561973448da05b5adb8602c67b8c4ac2e2573ae1605faab3e5c0f"
+  license "MIT"
+  head "https://github.com/emil7051/textcleaner.git", branch: "main"
+
+  # Define the minimum Python version required, matching pyproject.toml
+  # Adjust python version if needed (e.g., python@3.9, python@3.10)
+  depends_on "python@3.8"
+
+  # Dependencies are now handled by setup.py/pyproject.toml via pip
 
   def install
-    # Note: This formula provides the textcleaner command but users need to install Python dependencies separately
-    # using: pip install beautifulsoup4 click pypdf pyyaml
-    
-    # Copy source files to libexec directory
-    libexec.install Dir["*"]
-    
-    # Create wrapper script
-    (bin/"textcleaner").write <<~EOS
-      #!/bin/bash
-      echo "First time? Install dependencies with: pip install beautifulsoup4 click pypdf pyyaml"
-      PYTHONPATH="#{libexec}:$PYTHONPATH" exec python3 -m llm_text_processor.cli "$@"
-    EOS
-    chmod 0755, bin/"textcleaner"
-  end
+    # Create a virtual environment
+    venv = virtualenv_create(libexec, Formula["python@3.8"].opt_bin/"python3")
+    # Install the package and its dependencies using pip from the downloaded source
+    venv.pip_install root
 
-  def caveats
-    <<~EOS
-      Before using textcleaner, please install required Python dependencies:  
-        pip install beautifulsoup4 click pypdf pyyaml
-    EOS
+    # Create a wrapper script to make the command available in the PATH
+    # Ensures the command runs within the virtual environment
+    (bin/"textcleaner").write_env_script venv.bin/"textcleaner", PATH: "#{venv.bin}:$PATH"
   end
 
   test do
-    system "#{bin}/textcleaner", "--help"
+    # Test if the command runs and shows the version
+    system bin/"textcleaner", "--version"
   end
 end
