@@ -11,12 +11,14 @@ class Textcleaner < Formula
   depends_on "python@3.11"
 
   def install
-    venv = virtualenv_create(libexec, "/opt/homebrew/bin/python3.11")
-    # Let pip handle dependency resolution based on pyproject.toml
-    # using the current directory '.' as the target
-    venv.pip_install "."
+    # Create venv and install pip/setuptools/wheel
+    virtualenv_install_with_resources
 
-    (bin/"textcleaner").write_env_script "#{libexec}/bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
+    # Install the package using the venv's pip, resolving dependencies from pyproject.toml
+    system libexec/"bin/pip", "install", "."
+
+    # Create the executable script
+    (bin/"textcleaner").write_env_script libexec/"bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
   end
 
   test do
