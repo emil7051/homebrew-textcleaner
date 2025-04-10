@@ -17,6 +17,7 @@ class Textcleaner < Formula
     venv.pip_install "soupsieve==2.6"
     venv.pip_install "typing-extensions==4.13.1"
     venv.pip_install "bleach>=6.1.0"
+    venv.pip_install "webencodings>=0.5.1"
     venv.pip_install buildpath
 
     (bin/"textcleaner").write_env_script "#{libexec}/bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
