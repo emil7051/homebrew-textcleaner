@@ -13,7 +13,8 @@ class Textcleaner < Formula
   def install
     venv = virtualenv_create(libexec, "/opt/homebrew/bin/python3.11")
     # Let pip handle dependency resolution based on pyproject.toml
-    venv.pip_install buildpath
+    # using the current directory '.' as the target
+    venv.pip_install "."
 
     (bin/"textcleaner").write_env_script "#{libexec}/bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
   end
