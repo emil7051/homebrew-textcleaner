@@ -3,8 +3,8 @@ class Textcleaner < Formula
 
   desc "Text cleaning tool for LLM processing"
   homepage "https://github.com/emil7051/textcleaner"
-  url "https://github.com/emil7051/textcleaner/archive/refs/tags/v0.5.5.tar.gz"
-  sha256 "611c41b16b0ded1e51610797b6f91ac139c1b69aa2bb0a43963138d6fb9d5318"
+  url "https://github.com/emil7051/textcleaner/archive/refs/tags/v0.5.6.tar.gz"
+  sha256 "02997782c168f54a171bef0976fd18cebdf0405e56742772ae4b5421d7644809"
   license "MIT"
   head "https://github.com/emil7051/textcleaner.git", branch: "main"
 
