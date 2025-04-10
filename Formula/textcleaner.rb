@@ -13,7 +13,7 @@ class Textcleaner < Formula
   # Define resources for all dependencies from pyproject.toml
   resource "pypdf" do
     url "https://files.pythonhosted.org/packages/source/p/pypdf/pypdf-4.3.1.tar.gz"
-    sha256 "2ddc1e31b0d49f1de0b38681e30fcc5697732f1a46622204074b9839c4897d1c"
+    sha256 "b2f37fe9a3030aa97ca86067a56ba3f9d3565f9a791b305c7355d8392c30d91b"
   end
 
   resource "pdfminer.six" do
