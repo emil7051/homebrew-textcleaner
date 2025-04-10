@@ -15,6 +15,16 @@ class Textcleaner < Formula
     sha256 "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43"
   end
 
+  resource "beautifulsoup4" do
+    url "https://files.pythonhosted.org/packages/75/f8/de84282681c5a8307f3fff245122f8a1e8ba29c4e0ac1315d509850ed6d8/beautifulsoup4-4.12.2.tar.gz"
+    sha256 "492bbc69dca35d12daac71c4db1bfff0c876c00ef4a2ffacce226d4638eb72da"
+  end
+
+  resource "soupsieve" do
+    url "https://files.pythonhosted.org/packages/ce/21/952a240de1c196c7e3fbcd4e559681f0419b1280c617db21157a0390717b/soupsieve-2.5.tar.gz"
+    sha256 "5663d5a7b3bfaeee0bc4372e7fc48f9cff4940b3eec54a6451cc5299f1097690"
+  end
+
   def install
     venv = virtualenv_create(libexec, "/opt/homebrew/bin/python3.11")
     resources.each do |r|
