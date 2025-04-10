@@ -16,13 +16,18 @@ class Textcleaner < Formula
   end
 
   resource "beautifulsoup4" do
-    url "https://files.pythonhosted.org/packages/75/f8/de84282681c5a8307f3fff245122f8a1e8ba29c4e0ac1315d509850ed6d8/beautifulsoup4-4.12.2.tar.gz"
-    sha256 "492bbc69dca35d12daac71c4db1bfff0c876c00ef4a2ffacce226d4638eb72da"
+    url "https://files.pythonhosted.org/packages/9c/d8/909c4089dbe4ade9f9705f143a7edb49a0f0a2caffc70d0c5253860468ec/beautifulsoup4-4.12.3.tar.gz"
+    sha256 "74e3d1928edc070d21748185c46e3fb33490f22f52a3addee9aee0f4f7781051"
   end
 
   resource "soupsieve" do
     url "https://files.pythonhosted.org/packages/ce/21/952a240de1c196c7e3fbcd4e559681f0419b1280c617db21157a0390717b/soupsieve-2.5.tar.gz"
     sha256 "5663d5a7b3bfaeee0bc4372e7fc48f9cff4940b3eec54a6451cc5299f1097690"
+  end
+
+  resource "typing-extensions" do
+    url "https://files.pythonhosted.org/packages/9a/7f/5e5a1aeb0bdb6ed77adbb4f5d4d608cf0a21ec3edb9348abfa02604086bf/typing_extensions-4.13.0.tar.gz"
+    sha256 "c3b986f2fa4082127cd69e78041bc2a3c5a6438d25ccd61e38b59fb5eec8f6ea"
   end
 
   def install
