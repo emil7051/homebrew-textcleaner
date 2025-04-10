@@ -17,8 +17,8 @@ class Textcleaner < Formula
   end
 
   resource "pdfminer.six" do
-    url "https://files.pythonhosted.org/packages/source/p/pdfminer.six/pdfminer.six-20240701.tar.gz"
-    sha256 "622c618417cd37c32a1a6257b6d61d3d8d701b601939172ec924a84cb6d16a48"
+    url "https://files.pythonhosted.org/packages/source/p/pdfminer.six/pdfminer.six-20231228.tar.gz"
+    sha256 "PLACEHOLDER_SHA256" # Will be replaced after brew download attempt
   end
 
   resource "python-docx" do
