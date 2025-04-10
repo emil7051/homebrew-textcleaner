@@ -10,12 +10,21 @@ class Textcleaner < Formula
 
   depends_on "python@3.11"
 
-  def install
-    # Create venv and install pip/setuptools/wheel
-    virtualenv_install_with_resources
+  # Declare PyYAML as a resource
+  resource "pyyaml" do
+    url "https://files.pythonhosted.org/packages/source/P/PyYAML/PyYAML-6.0.1.tar.gz"
+    sha256 "cdF91fe81d94e04610b95474ab9b4e4bd2f5d09129334a4b284f7e6e6c656030"
+  end
 
-    # Install the package using the venv's pip, resolving dependencies from pyproject.toml
-    system libexec/"bin/pip", "install", "."
+  def install
+    # Create venv (pip/setuptools/wheel are installed by Homebrew automatically here)
+    venv = virtualenv_create(libexec, "python3.11")
+
+    # Install resources first (PyYAML)
+    venv.pip_install resource("pyyaml")
+
+    # Install the package itself, pip should find PyYAML already installed
+    venv.pip_install "."
 
     # Create the executable script
     (bin/"textcleaner").write_env_script libexec/"bin/textcleaner", PATH: "#{libexec}/bin:$PATH"
